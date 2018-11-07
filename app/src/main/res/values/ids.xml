@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="eventDate" type="id"/>
+    <item name="clubHome" type="id"/>
+    <item name="homeScore1" type="id"/>
+    <item name="textView1" type="id"/>
+    <item name="awayScore1" type="id"/>
+    <item name="away1" type="id"/>
+</resources>
