@@ -1,10 +1,9 @@
 package id.alif.footbalmatchschedule.presenter
 
-import android.util.Log
+
 import com.google.gson.Gson
 import id.alif.footbalmatchschedule.api.ApiRepository
 import id.alif.footbalmatchschedule.api.TheSportDBApi
-import id.alif.footbalmatchschedule.main.LastMatchActivity
 import id.alif.footbalmatchschedule.main.LastMatchFragment
 import id.alif.footbalmatchschedule.model.ResponseApi
 import org.jetbrains.anko.doAsync

@@ -1,26 +1,20 @@
 package id.alif.footbalmatchschedule.main
 
-import android.support.v7.app.AppCompatActivity
+
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.FrameLayout
+import android.view.*
 import android.widget.ProgressBar
 import com.google.gson.Gson
-import com.google.gson.JsonObject
 import id.alif.footbalmatchschedule.R
 import id.alif.footbalmatchschedule.api.ApiRepository
 import id.alif.footbalmatchschedule.model.LastMatchTeam
 import id.alif.footbalmatchschedule.presenter.LastMatchPresenter
 import id.alif.footbalmatchschedule.util.invisible
 import id.alif.footbalmatchschedule.util.visible
-import org.jetbrains.anko.ctx
-import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.intentFor
 import org.jetbrains.anko.support.v4.onRefresh
@@ -33,6 +27,7 @@ class LastMatchFragment: Fragment(),LastMatchView {
     private lateinit var swipeRefresh: SwipeRefreshLayout
     private lateinit var lastMatchList: RecyclerView
     private lateinit var leagueName: String
+    private var menuItem: Menu? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.last_match, container, false)
@@ -64,6 +59,7 @@ class LastMatchFragment: Fragment(),LastMatchView {
         presenter.getLastMatch("4328")
 
         swipeRefresh.onRefresh {
+            swipeRefresh.isRefreshing = false
             presenter.getLastMatch("4328")
         }
 
@@ -86,4 +82,5 @@ class LastMatchFragment: Fragment(),LastMatchView {
         adapter.notifyDataSetChanged()
     }
 
+   
 }

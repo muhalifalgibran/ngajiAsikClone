@@ -1,8 +1,7 @@
 package id.alif.footbalmatchschedule.main
 
 
-import android.content.ClipData
-import android.graphics.drawable.Drawable
+
 import android.support.v7.widget.RecyclerView
 import android.view.Gravity
 import android.view.View
@@ -96,11 +95,11 @@ class LastMatchAdapter(private val lastMatch: List<LastMatchTeam>, private val l
 
     class LastMatchHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        private val homeTeam: TextView = view.find(R.id.clubHome)
-        private val awayTeam: TextView = view.find(R.id.away1)
-        private val homeScore: TextView = view.find(R.id.homeScore1)
-        private val awayScore: TextView = view.find(R.id.awayScore1)
-        private val date: TextView = view.find(R.id.eventDate)
+            private val homeTeam: TextView = view.find(R.id.clubHome)
+            private val awayTeam: TextView = view.find(R.id.away1)
+            private val homeScore: TextView = view.find(R.id.homeScore1)
+            private val awayScore: TextView = view.find(R.id.awayScore1)
+            private val date: TextView = view.find(R.id.eventDate)
 
         fun bindItem(lastMatchTeam: LastMatchTeam, listener: (LastMatchTeam) -> Unit) {
             homeTeam.text = lastMatchTeam.strHomeTeam

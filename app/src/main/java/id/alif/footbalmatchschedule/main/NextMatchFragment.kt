@@ -1,4 +1,5 @@
 package id.alif.footbalmatchschedule.main
+
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
@@ -27,7 +28,6 @@ class NextMatchFragment: Fragment(), LastMatchView {
     private lateinit var progressBar: ProgressBar
     private lateinit var swipeRefresh: SwipeRefreshLayout
     private lateinit var lastMatchList: RecyclerView
-    private lateinit var leagueName: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.last_match, container, false)

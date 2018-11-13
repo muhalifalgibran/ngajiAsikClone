@@ -24,6 +24,7 @@ class DetailMatchPresenter(private val view: DetailLastMatch,
                 .doRequest(TheSportDBApi.getAwayLogo(away)),ResponseApiBadgeAway::class.java)
             uiThread {
                  view.bindItem(data.events,homeLogo.teams,awayLogo.teams);
+                 view.showTeamDetail(data.events,homeLogo.teams,awayLogo.teams)
             }
         }
     }
