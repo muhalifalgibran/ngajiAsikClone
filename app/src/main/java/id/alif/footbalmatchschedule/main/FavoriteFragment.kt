@@ -22,7 +22,7 @@ import org.jetbrains.anko.support.v4.intentFor
 import org.jetbrains.anko.db.select
 import org.jetbrains.anko.support.v4.onRefresh
 
-class FavoriteFragment: Fragment(), LastMatchView {
+class FavoriteFragment: Fragment() {
 
     private var favorites: MutableList<Favorite> = mutableListOf()
     private lateinit var adapter: FavoriteAdapter
@@ -64,23 +64,11 @@ class FavoriteFragment: Fragment(), LastMatchView {
             swipeRefresh.isRefreshing = false
             val result = select(Favorite.TABLE_FAVORITE)
             val favorite = result.parseList(classParser<Favorite>())
-            Log.d("hasil", favorite.toString())
             favorites.addAll(favorite)
             adapter.notifyDataSetChanged()
         }
     }
 
-    override fun showLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun hideLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun showTeamList(data: List<LastMatchTeam>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
 
 }

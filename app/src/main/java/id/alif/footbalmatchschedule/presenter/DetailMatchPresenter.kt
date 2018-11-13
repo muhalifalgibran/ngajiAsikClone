@@ -23,8 +23,7 @@ class DetailMatchPresenter(private val view: DetailLastMatch,
             val awayLogo = gson.fromJson(apiRepository
                 .doRequest(TheSportDBApi.getAwayLogo(away)),ResponseApiBadgeAway::class.java)
             uiThread {
-                 view.bindItem(data.events,homeLogo.teams,awayLogo.teams);
-                 view.showTeamDetail(data.events,homeLogo.teams,awayLogo.teams)
+                 view.bindItem(data.events,homeLogo.teams,awayLogo.teams)
             }
         }
     }

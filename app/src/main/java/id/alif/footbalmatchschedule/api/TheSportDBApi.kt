@@ -32,17 +32,17 @@ object TheSportDBApi {
 
     fun getDetail(match: String?): String {
         val url = BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/lookupevent.php?id=" + match
-        return url;
+        return url
     }
 
     fun getHomeLogo(home: String?): String {
         val url = BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/lookupteam.php?id=" + home
-        return url;
+        return url
     }
 
     fun getAwayLogo(away: String?): String {
         val url = BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/lookupteam.php?id=" + away
-        return url;
+        return url
     }
 }
 

@@ -18,7 +18,6 @@ class DatabaseOpenHelper(ctx: Context): ManagedSQLiteOpenHelper(ctx, "FavoriteTe
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        // Here you create tables
         db.createTable(Favorite.TABLE_FAVORITE, true,
             Favorite.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
             Favorite.ID_EVENT to TEXT,
@@ -32,11 +31,9 @@ class DatabaseOpenHelper(ctx: Context): ManagedSQLiteOpenHelper(ctx, "FavoriteTe
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        // Here you can upgrade tables, as usual
         db.dropTable(Favorite.TABLE_FAVORITE, true)
     }
 }
 
-// Access property for Context
 val Context.database: DatabaseOpenHelper
     get() = DatabaseOpenHelper.getInstance(applicationContext)

@@ -25,13 +25,12 @@ import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.delete
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
-import org.jetbrains.anko.design.snackbar
 import id.alif.footbalmatchschedule.database.Favorite
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.support.v4.onRefresh
 
 
-class DetailLastMatch : AppCompatActivity(), DetailMatchView{
+class DetailLastMatch : AppCompatActivity(){
 
     private var menuItem: Menu? = null
     private var isFavorite: Boolean = false
@@ -78,10 +77,6 @@ class DetailLastMatch : AppCompatActivity(), DetailMatchView{
 
     }
 
-    override fun showTeamDetail(data: List<DetailMatch>, homeBadge: List<HomeBadge>, awayBadge: List<AwayBadge>) {
-        Log.d("ada2231", data.toString() + "\n" + homeBadge.toString()+ "\n" + awayBadge.toString())
-    }
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.detail_menu, menu)
         menuItem = menu
@@ -105,7 +100,6 @@ class DetailLastMatch : AppCompatActivity(), DetailMatchView{
     }
 
     private fun addToFavorite(){
-        Log.d("biskan21" , detailM.toString())
         try {
             database.use {
                 insert(Favorite.TABLE_FAVORITE,
@@ -194,7 +188,6 @@ class DetailLastMatch : AppCompatActivity(), DetailMatchView{
         Picasso.get().load(homeBadge.firstOrNull()?.strTeamBadgeHome.toString()).into(homeLogo)
         Picasso.get().load(awayBadge.firstOrNull()?.strTeamBadgeAway.toString()).into(awayLogo)
 
-        Log.d("biskan" , item.toString())
         detailM = item
 
     }
