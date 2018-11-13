@@ -9,12 +9,7 @@ class DatabaseOpenHelper(ctx: Context): ManagedSQLiteOpenHelper(ctx, "FavoriteTe
         private var instance: DatabaseOpenHelper? = null
 
         @Synchronized
-        fun getInstance(ctx: Context): DatabaseOpenHelper {
-            if (instance == null) {
-                instance = DatabaseOpenHelper(ctx.applicationContext)
-            }
-            return instance as DatabaseOpenHelper
-        }
+        fun getInstance(ctx: Context) = instance ?: DatabaseOpenHelper(ctx)
     }
 
     override fun onCreate(db: SQLiteDatabase) {

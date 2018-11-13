@@ -1,13 +1,12 @@
 package id.alif.footbalmatchschedule.main
 
-import android.content.Context
+
 import android.database.sqlite.SQLiteConstraintException
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AlertDialog
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.google.gson.Gson
@@ -59,16 +58,18 @@ class DetailLastMatch : AppCompatActivity(){
 
         id = strEvent
         swipeRefresh = findViewById<SwipeRefreshLayout>(R.id.swipeDetail)
-
+        swipeRefresh.isRefreshing = true
 
         val request = ApiRepository()
         val gson = Gson()
-        favoriteState()
         presenter = DetailMatchPresenter(this, request, gson)
 
         presenter.getDetailMatch(strEvent,idHomeTeam,idAwayTeam)
 
+
+
         bindItem(detailM,homeBadge,awayBadge)
+
 
         swipeRefresh.onRefresh {
             bindItem(detailM,homeBadge,awayBadge)
@@ -80,6 +81,8 @@ class DetailLastMatch : AppCompatActivity(){
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.detail_menu, menu)
         menuItem = menu
+        favoriteState()
+        setFavorite()
         return true
     }
 
@@ -128,7 +131,7 @@ class DetailLastMatch : AppCompatActivity(){
     private fun favoriteState(){
         database.use {
             val result = select(Favorite.TABLE_FAVORITE)
-                .whereArgs("(ID_EVENT = {id})",
+                .whereArgs("(${Favorite.ID_EVENT} = {id})",
                     "id" to id)
             val favorite = result.parseList(classParser<Favorite>())
             if (!favorite.isEmpty()) isFavorite = true
@@ -139,7 +142,7 @@ class DetailLastMatch : AppCompatActivity(){
         try {
             database.use {
                 delete(
-                    Favorite.TABLE_FAVORITE, "(ID_EVENT = {id})",
+                    Favorite.TABLE_FAVORITE, "(${Favorite.ID_EVENT} = {id})",
                     "id" to id
                 )
             }
@@ -189,6 +192,7 @@ class DetailLastMatch : AppCompatActivity(){
         Picasso.get().load(awayBadge.firstOrNull()?.strTeamBadgeAway.toString()).into(awayLogo)
 
         detailM = item
+        swipeRefresh.isRefreshing = false
 
     }
 }
