@@ -27,9 +27,9 @@ class FavoriteFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val view = inflater.inflate(last_match, container, false)
+        val view = inflater.inflate(R.layout.fav_match, container, false)
 
-        favList = view.findViewById<RecyclerView>(R.id.recyclerLastMatch).apply {
+        favList = view.findViewById<RecyclerView>(R.id.recyclerFavMatchlist).apply {
             layoutManager = LinearLayoutManager(ctx)
         }
 

@@ -5,24 +5,25 @@ import id.alif.footbalmatchschedule.api.ApiRepository
 import id.alif.footbalmatchschedule.api.TheSportDBApi
 import id.alif.footbalmatchschedule.main.NextMatchFragment
 import id.alif.footbalmatchschedule.model.ResponseApi
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
+import id.alif.footbalmatchschedule.util.CoroutineContextProvider
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class NextMatchPresenter (private val view: NextMatchFragment,
                           private val apiRepository: ApiRepository,
-                          private val gson: Gson
+                          private val gson: Gson, private val context: CoroutineContextProvider = CoroutineContextProvider()
 ){
 
     fun getNextMatch(league : String?){
-        doAsync {
+
+        GlobalScope.launch(context.main) {
             val data = gson.fromJson(apiRepository
-                .doRequest(TheSportDBApi.getNextMatch(league)),
+                .doRequest(TheSportDBApi.getNextMatch(league)).await(),
                 ResponseApi::class.java)
 
-            uiThread {
                 view.hideLoading()
                 view.showTeamList(data.events)
-            }
+
         }
     }
 }

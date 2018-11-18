@@ -7,24 +7,25 @@ import id.alif.footbalmatchschedule.main.DetailLastMatch
 import id.alif.footbalmatchschedule.model.ResponseApiBadgeAway
 import id.alif.footbalmatchschedule.model.ResponseApiBadgeHome
 import id.alif.footbalmatchschedule.model.ResponseDetail
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
+import id.alif.footbalmatchschedule.util.CoroutineContextProvider
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class DetailMatchPresenter(private val view: DetailLastMatch,
                            private val apiRepository: ApiRepository,
-                           private val gson: Gson) {
+                           private val gson: Gson, private val context: CoroutineContextProvider = CoroutineContextProvider()) {
 
     fun getDetailMatch(match: String?, home: String?, away: String?){
-        doAsync {
+        GlobalScope.launch(context.main) {
+
             val data = gson.fromJson(apiRepository
-                .doRequest(TheSportDBApi.getDetail(match)),ResponseDetail::class.java)
+                .doRequest(TheSportDBApi.getDetail(match)).await(),ResponseDetail::class.java)
             val homeLogo = gson.fromJson(apiRepository
-                .doRequest(TheSportDBApi.getHomeLogo(home)),ResponseApiBadgeHome::class.java)
+                .doRequest(TheSportDBApi.getHomeLogo(home)).await(),ResponseApiBadgeHome::class.java)
             val awayLogo = gson.fromJson(apiRepository
-                .doRequest(TheSportDBApi.getAwayLogo(away)),ResponseApiBadgeAway::class.java)
-            uiThread {
+                .doRequest(TheSportDBApi.getAwayLogo(away)).await(),ResponseApiBadgeAway::class.java)
                  view.bindItem(data.events,homeLogo.teams,awayLogo.teams)
-            }
+
         }
     }
 

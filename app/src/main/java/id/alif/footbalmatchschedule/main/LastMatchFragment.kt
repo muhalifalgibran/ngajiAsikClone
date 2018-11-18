@@ -26,13 +26,12 @@ class LastMatchFragment: Fragment(),LastMatchView {
     private lateinit var progressBar: ProgressBar
     private lateinit var swipeRefresh: SwipeRefreshLayout
     private lateinit var lastMatchList: RecyclerView
-    private lateinit var leagueName: String
-    private var menuItem: Menu? = null
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.last_match, container, false)
 
-        lastMatchList = view.findViewById<RecyclerView>(R.id.recyclerLastMatch).apply {
+        lastMatchList = view.findViewById<RecyclerView>(R.id.recyclerLastMatchlist).apply {
             layoutManager = LinearLayoutManager(ctx)
         }
 
@@ -44,6 +43,7 @@ class LastMatchFragment: Fragment(),LastMatchView {
         }
 
         adapter = LastMatchAdapter(lastMatch, listener)
+
         lastMatchList.adapter = adapter
 
 
@@ -62,7 +62,6 @@ class LastMatchFragment: Fragment(),LastMatchView {
             swipeRefresh.isRefreshing = false
             presenter.getLastMatch("4328")
         }
-
         return view
     }
 

@@ -66,8 +66,6 @@ class DetailLastMatch : AppCompatActivity(){
 
         presenter.getDetailMatch(strEvent,idHomeTeam,idAwayTeam)
 
-
-
         bindItem(detailM,homeBadge,awayBadge)
 
 
@@ -92,7 +90,7 @@ class DetailLastMatch : AppCompatActivity(){
                 finish()
                 true
             }
-            add_to_favorite ->{
+            R.id.add_to_favorite ->{
                 if(isFavorite) removeFromFavorite() else addToFavorite()
                 isFavorite = !isFavorite
                 setFavorite()

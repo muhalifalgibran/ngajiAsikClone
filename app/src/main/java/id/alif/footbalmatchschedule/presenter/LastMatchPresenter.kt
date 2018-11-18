@@ -1,31 +1,32 @@
 package id.alif.footbalmatchschedule.presenter
 
 
+
 import com.google.gson.Gson
 import id.alif.footbalmatchschedule.api.ApiRepository
 import id.alif.footbalmatchschedule.api.TheSportDBApi
 import id.alif.footbalmatchschedule.main.LastMatchFragment
 import id.alif.footbalmatchschedule.model.ResponseApi
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
+import id.alif.footbalmatchschedule.util.CoroutineContextProvider
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class LastMatchPresenter(private val view: LastMatchFragment,
                          private val apiRepository: ApiRepository,
-                         private val gson: Gson){
+                         private val gson: Gson,private val context: CoroutineContextProvider = CoroutineContextProvider()){
 
     fun getLastMatch(league : String?){
-       // view.showLoading()
-        doAsync {
-            val data = gson.fromJson(apiRepository
-                .doRequest(TheSportDBApi.getLastMatch(league)),
-                ResponseApi::class.java)
+        view.showLoading()
+        GlobalScope.launch(context.main) {
 
-            uiThread {
-                view.hideLoading()
-                view.showTeamList(data.events)
-            }
+            val data = gson.fromJson(apiRepository
+                .doRequest(TheSportDBApi.getLastMatch(league)).await(),
+                ResponseApi::class.java)
+            view.hideLoading()
+            view.showTeamList(data.events)
+        }
+
         }
     }
 
 
-}

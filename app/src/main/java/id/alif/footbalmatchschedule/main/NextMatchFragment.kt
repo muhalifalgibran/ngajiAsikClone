@@ -30,9 +30,9 @@ class NextMatchFragment: Fragment(), LastMatchView {
     private lateinit var lastMatchList: RecyclerView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.last_match, container, false)
+        val view = inflater.inflate(R.layout.next_match, container, false)
 
-        lastMatchList = view.findViewById<RecyclerView>(R.id.recyclerLastMatch).apply {
+        lastMatchList = view.findViewById<RecyclerView>(R.id.recyclerNextMatchlist).apply {
             layoutManager = LinearLayoutManager(ctx)
         }
 
