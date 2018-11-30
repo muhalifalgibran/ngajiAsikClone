@@ -68,7 +68,6 @@ class DetailLastMatch : AppCompatActivity(){
 
         bindItem(detailM,homeBadge,awayBadge)
 
-
         swipeRefresh.onRefresh {
             bindItem(detailM,homeBadge,awayBadge)
             swipeRefresh.isRefreshing = false

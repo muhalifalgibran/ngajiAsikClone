@@ -1,4 +1,4 @@
-package id.alif.footbalmatchschedule.main
+package id.alif.footbalmatchschedule.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -8,10 +8,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import id.alif.footbalmatchschedule.R.layout.last_match
+import id.alif.footbalmatchschedule.Adapter.FavoriteAdapter
 import id.alif.footbalmatchschedule.database.Favorite
 import id.alif.footbalmatchschedule.R
 import id.alif.footbalmatchschedule.database.database
+import id.alif.footbalmatchschedule.main.DetailLastMatch
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.intentFor

@@ -1,8 +1,11 @@
-package id.alif.footbalmatchschedule.main
+package id.alif.footbalmatchschedule.Adapter
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import id.alif.footbalmatchschedule.fragment.FavoriteFragment
+import id.alif.footbalmatchschedule.fragment.LastMatchFragment
+import id.alif.footbalmatchschedule.fragment.NextMatchFragment
 
 class FragmentAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
 
@@ -13,7 +16,6 @@ class FragmentAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
           else -> {
               return "Favorites"
           }
-
        }
     }
 
@@ -34,4 +36,7 @@ class FragmentAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
        return 3
     }
+
+
+
 }

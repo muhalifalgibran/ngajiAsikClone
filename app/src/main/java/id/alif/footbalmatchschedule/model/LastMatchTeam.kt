@@ -1,6 +1,8 @@
 package id.alif.footbalmatchschedule.model
 
 import com.google.gson.annotations.SerializedName
+import java.sql.Date
+import java.text.DateFormat
 
 data class LastMatchTeam(
         @SerializedName("idEvent")
@@ -32,6 +34,12 @@ data class LastMatchTeam(
 
         @SerializedName("strDate")
         var strDate: String? = null,
+
+        @SerializedName("dateEvent")
+        var dateEvent: String? = null,
+
+        @SerializedName("strTime")
+        var strTime: String? = null,
 
         @SerializedName("strHomeLineupGoalkeeper")
         var strHomeLineupGoalkeeper: String? = null,

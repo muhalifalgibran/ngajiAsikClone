@@ -23,6 +23,8 @@ class DatabaseOpenHelper(ctx: Context): ManagedSQLiteOpenHelper(ctx, "FavoriteTe
             Favorite.INTHOMESCORE to TEXT,
             Favorite.INTAWAYSCORE to TEXT,
             Favorite.STRDATE to TEXT)
+
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {

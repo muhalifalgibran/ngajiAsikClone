@@ -6,4 +6,15 @@
     <item name="textView1" type="id"/>
     <item name="awayScore1" type="id"/>
     <item name="away1" type="id"/>
+    <item name="imageReminder" type="id"/>
+    <item name="layoutnya" type="id"/>
+    <item name="team_badge" type="id"/>
+    <item name="team_name" type="id"/>
+    <item name="spinner" type="id"/>
+    <item name="spinner2" type="id"/>
+    <item name="list_team" type="id"/>
+    <item name="list_teamR" type="id"/>
+    <item name="list_itemR" type="id"/>
+    <item name="cariTeam" type="id"/>
+    <item name="toolbarDetail" type="id"/>
 </resources>

@@ -1,4 +1,4 @@
-package id.alif.footbalmatchschedule.main
+package id.alif.footbalmatchschedule.Adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -13,7 +13,11 @@ class FavoriteAdapter(private val favorite: List<Favorite>, private val listener
     :RecyclerView.Adapter<FavoriteAdapter.FavoriteAdapterHolder>(){
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): FavoriteAdapterHolder {
-         return FavoriteAdapterHolder(LastMatchAdapter.SomeActivity().createView(AnkoContext.create(p0.context,p0)))
+         return FavoriteAdapterHolder(
+             LastMatchAdapter.SomeActivity().createView(
+                 AnkoContext.create(p0.context, p0)
+             )
+         )
     }
 
     override fun getItemCount(): Int {

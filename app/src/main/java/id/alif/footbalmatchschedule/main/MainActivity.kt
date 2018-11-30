@@ -2,6 +2,7 @@ package id.alif.footbalmatchschedule.main
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import id.alif.footbalmatchschedule.Adapter.FragmentAdapter
 import id.alif.footbalmatchschedule.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -17,4 +18,5 @@ class MainActivity : AppCompatActivity() {
 
         tabs_main.setupWithViewPager(viewpager_main)
     }
+
 }

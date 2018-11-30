@@ -5,6 +5,8 @@ import id.alif.footbalmatchschedule.main.DetailLastMatch
 import id.alif.footbalmatchschedule.main.LastMatchView
 import id.alif.footbalmatchschedule.model.*
 import id.alif.footbalmatchschedule.presenter.DetailMatchPresenter
+import id.alif.footbalmatchschedule.presenter.LastMatchPresenter
+import id.alif.footbalmatchschedule.presenter.NextMatchPresenter
 import id.alif.footbalmatchschedule.util.TestContextProvider
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -24,11 +26,8 @@ class ApiRepositoryTest {
 
     @Mock
     private
-    lateinit var viewLastMatch: LastMatchView
+    lateinit var viewMatch: LastMatchView
 
-    @Mock
-    private
-    lateinit var viewNextLastMatch: LastMatchView
 
     @Mock
     private
@@ -39,11 +38,15 @@ class ApiRepositoryTest {
     lateinit var apiRepository: ApiRepository
 
     private lateinit var presenterDetail: DetailMatchPresenter
+    private lateinit var presenterLast: LastMatchPresenter
+    private lateinit var presenterNext: NextMatchPresenter
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
         presenterDetail = DetailMatchPresenter(viewDetail, apiRepository, gson, TestContextProvider())
+        presenterLast = LastMatchPresenter(viewMatch, apiRepository, gson, TestContextProvider())
+        presenterNext = NextMatchPresenter(viewMatch, apiRepository, gson, TestContextProvider())
     }
 
     @Test
@@ -97,9 +100,9 @@ class ApiRepositoryTest {
                 )
             ).thenReturn(response)
 
-            Mockito.verify(viewLastMatch).showLoading()
-            Mockito.verify(viewLastMatch).showTeamList(teams)
-            Mockito.verify(viewLastMatch).hideLoading()
+            Mockito.verify(viewMatch).showLoading()
+            Mockito.verify(viewMatch).showTeamList(teams)
+            Mockito.verify(viewMatch).hideLoading()
         }
     }
 
@@ -120,9 +123,9 @@ class ApiRepositoryTest {
                     )
                 ).thenReturn(response)
 
-                Mockito.verify(viewNextLastMatch).showLoading()
-                Mockito.verify(viewNextLastMatch).showTeamList(teams)
-                Mockito.verify(viewNextLastMatch).hideLoading()
+                Mockito.verify(viewMatch).showLoading()
+                Mockito.verify(viewMatch).showTeamList(teams)
+                Mockito.verify(viewMatch).hideLoading()
 
             }
         }
