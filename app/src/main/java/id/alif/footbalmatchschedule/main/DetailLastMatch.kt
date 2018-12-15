@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AlertDialog
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.google.gson.Gson
@@ -131,7 +132,9 @@ class DetailLastMatch : AppCompatActivity(){
                 .whereArgs("(${Favorite.ID_EVENT} = {id})",
                     "id" to id)
             val favorite = result.parseList(classParser<Favorite>())
-            if (!favorite.isEmpty()) isFavorite = true
+            if (!favorite.isEmpty()){
+                isFavorite = true
+            }
         }
     }
 

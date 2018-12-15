@@ -86,8 +86,12 @@ class ApiRepositoryTest {
     @Test
     fun doRequestLastMatch() {
 
-        val teams: MutableList<LastMatchTeam> = mutableListOf()
-        val response = ResponseApi(teams)
+        val events: MutableList<LastMatchTeam> = mutableListOf()
+        val event: MutableList<LastMatchTeam> = mutableListOf()
+        val teams: MutableList<Team> = mutableListOf()
+        val list: MutableList<PlayersModel> = mutableListOf()
+
+        val response = ResponseApi(events,event, teams,list)
         val league = "4328"
         val apiRepository = mock(ApiRepository::class.java)
 
@@ -101,7 +105,7 @@ class ApiRepositoryTest {
             ).thenReturn(response)
 
             Mockito.verify(viewMatch).showLoading()
-            Mockito.verify(viewMatch).showTeamList(teams)
+            Mockito.verify(viewMatch).showTeamList(events)
             Mockito.verify(viewMatch).hideLoading()
         }
     }
@@ -109,8 +113,11 @@ class ApiRepositoryTest {
         @Test
         fun doRequestNextMatch() {
 
-            val teams: MutableList<LastMatchTeam> = mutableListOf()
-            val response = ResponseApi(teams)
+            val events: MutableList<LastMatchTeam> = mutableListOf()
+            val event: MutableList<LastMatchTeam> = mutableListOf()
+            val teams: MutableList<Team> = mutableListOf()
+            val list: MutableList<PlayersModel> = mutableListOf()
+            val response = ResponseApi(events,event, teams,list)
             val league = "4328"
             val apiRepository = mock(ApiRepository::class.java)
 
@@ -124,10 +131,35 @@ class ApiRepositoryTest {
                 ).thenReturn(response)
 
                 Mockito.verify(viewMatch).showLoading()
-                Mockito.verify(viewMatch).showTeamList(teams)
+                Mockito.verify(viewMatch).showTeamList(events)
                 Mockito.verify(viewMatch).hideLoading()
 
             }
         }
 
+    @Test
+    fun doRequestTeamList() {
+        val league = "English Premiere League"
+        val events: MutableList<LastMatchTeam> = mutableListOf()
+        val event: MutableList<LastMatchTeam> = mutableListOf()
+        val teams: MutableList<Team> = mutableListOf()
+        val list: MutableList<PlayersModel> = mutableListOf()
+        val response = ResponseApi(events,event, teams,list)
+        val apiRepository = mock(ApiRepository::class.java)
+
+        GlobalScope.launch {
+            `when`(
+                gson.fromJson(
+                    apiRepository
+                        .doRequest(TheSportDBApi.getTeams(league)).await(),
+                    ResponseApi::class.java
+                )
+            ).thenReturn(response)
+
+            Mockito.verify(viewMatch).showLoading()
+            Mockito.verify(viewMatch).showTeamList(events)
+            Mockito.verify(viewMatch).hideLoading()
+        }
+
+    }
 }

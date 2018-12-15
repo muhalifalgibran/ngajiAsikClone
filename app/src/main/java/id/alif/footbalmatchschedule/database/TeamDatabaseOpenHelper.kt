@@ -10,12 +10,7 @@ class TeamDatabaseOpenHelper(ctx: Context): ManagedSQLiteOpenHelper(ctx, "favori
         private var instance: TeamDatabaseOpenHelper? = null
 
         @Synchronized
-        fun getInstance(ctx: Context): TeamDatabaseOpenHelper{
-            if (instance == null){
-                instance = TeamDatabaseOpenHelper(ctx.applicationContext)
-            }
-            return instance as TeamDatabaseOpenHelper
-        }
+        fun getInstance(ctx: Context) = instance ?: TeamDatabaseOpenHelper(ctx)
     }
 
     override fun onCreate(db: SQLiteDatabase) {

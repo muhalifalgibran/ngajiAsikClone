@@ -15,8 +15,6 @@ import id.alif.footbalmatchschedule.model.LastMatchTeam
 
 class LoadMatchFragment: Fragment() {
 
-    private var lastMatch: MutableList<LastMatchTeam> = mutableListOf()
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(activity_main, container, false)
         return view

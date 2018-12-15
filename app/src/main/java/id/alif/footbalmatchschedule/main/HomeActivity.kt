@@ -6,6 +6,8 @@ import android.util.Log
 import id.alif.footbalmatchschedule.R
 import kotlinx.android.synthetic.main.activity_home.*
 import id.alif.footbalmatchschedule.R.id.*
+import id.alif.footbalmatchschedule.fragment.FavoriteFragment
+import id.alif.footbalmatchschedule.fragment.LoadFavFragment
 import id.alif.footbalmatchschedule.fragment.LoadMatchFragment
 import id.alif.footbalmatchschedule.fragment.TeamsFragment
 
@@ -24,7 +26,7 @@ class HomeActivity : AppCompatActivity() {
                     loadTeamsFragment(savedInstanceState)
                 }
                 favorites ->{
-                    Log.d("ada12", "ini fav")
+                    loadFavFragment(savedInstanceState)
                 }
             }
             true
@@ -49,6 +51,17 @@ class HomeActivity : AppCompatActivity() {
                 .replace(R.id.main_container,
                     TeamsFragment(),
                     TeamsFragment()::class.java.simpleName)
+                .commit()
+        }
+    }
+
+    private fun loadFavFragment(savedInstanceState: Bundle?){
+        if (savedInstanceState == null){
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.main_container,
+                    LoadFavFragment(),
+                    LoadFavFragment()::class.java.simpleName)
                 .commit()
         }
     }

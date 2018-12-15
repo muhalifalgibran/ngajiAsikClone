@@ -10,7 +10,7 @@
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
+            android:roundIcon="@mipmap/mqmsu"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity android:name=".main.HomeActivity">
@@ -36,14 +36,21 @@
         </activity>
         <activity android:name=".main.MainActivity"/>
         <activity android:name=".main.TeamDetailActivity"/>
-        <activity android:name=".main.DetailTeamActivity">
+        <activity
+                android:name=".main.DetailTeamActivity"
+                android:parentActivityName=".main.MainActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".main.MainActivity"/>
         </activity>
-        <activity android:name=".main.DetailPlayerActivity"
-                  android:parentActivityName=".main.TeamDetailActivity">
+        <activity
+                android:name=".main.DetailPlayerActivity"
+                android:parentActivityName=".main.TeamDetailActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".main.TeamDetailActivity"/>
-
+        </activity>
+        <activity android:name=".main.LoginActivity">
         </activity>
     </application>
 

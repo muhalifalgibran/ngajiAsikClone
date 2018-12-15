@@ -35,7 +35,6 @@ class NextMatchFragment: Fragment(), LastMatchView {
     private lateinit var progressBar1: ProgressBar
     private lateinit var swipeRefresh: SwipeRefreshLayout
     private lateinit var lastMatchList: RecyclerView
-   // private lateinit var spinnerNext: Spinner
     private lateinit var leagueName: String
     private lateinit var notif: ImageView
     private var cekKlik: Boolean = false

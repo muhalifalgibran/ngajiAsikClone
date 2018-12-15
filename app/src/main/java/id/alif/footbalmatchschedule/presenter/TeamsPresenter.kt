@@ -25,7 +25,6 @@ class TeamsPresenter(private val view: TeamsFragment,
             view.hideLoading()
             view.showTeamList(data.teams)
         }
-
         }
     fun getTeamSearch(league: String?){
         view.showLoading()

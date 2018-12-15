@@ -27,10 +27,13 @@ class DetailPlayerActivity : AppCompatActivity(), PlayerView {
         setSupportActionBar(findViewById(R.id.namaPemain))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        val nama: String  = intent.getStringExtra("namaPemain")
+
 
         val request = ApiRepository()
         val gson = Gson()
         presenter = DetailPlayerPresenter(this, request, gson)
+        presenter.getPlayerDetail(nama)
 
 
     }

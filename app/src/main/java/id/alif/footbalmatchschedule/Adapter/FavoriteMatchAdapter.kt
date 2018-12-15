@@ -3,14 +3,15 @@ package id.alif.footbalmatchschedule.Adapter
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import id.alif.footbalmatchschedule.R
 import id.alif.footbalmatchschedule.database.Favorite
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.find
 
-class FavoriteAdapter(private val favorite: List<Favorite>, private val listener: (Favorite) -> Unit )
-    :RecyclerView.Adapter<FavoriteAdapter.FavoriteAdapterHolder>(){
+class FavoriteMatchAdapter(private val favorite: List<Favorite>, private val listener: (Favorite) -> Unit )
+    :RecyclerView.Adapter<FavoriteMatchAdapter.FavoriteAdapterHolder>(){
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): FavoriteAdapterHolder {
          return FavoriteAdapterHolder(
@@ -35,8 +36,11 @@ class FavoriteAdapter(private val favorite: List<Favorite>, private val listener
         private val homeScore: TextView = view.find(R.id.homeScore1)
         private val awayScore: TextView = view.find(R.id.awayScore1)
         private val date: TextView = view.find(R.id.eventDate)
+        private val foto: ImageView = view.find(R.id.imageReminder)
 
         fun bindItem(favorite: Favorite, listener: (Favorite) -> Unit){
+
+            foto.visibility = View.INVISIBLE
 
             homeTeam.text = favorite.strHomeTeam
             awayTeam.text = favorite.strAwayTeam

@@ -9,20 +9,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import id.alif.footbalmatchschedule.Adapter.FavoriteMatchAdapter
-import id.alif.footbalmatchschedule.database.Favorite
 import id.alif.footbalmatchschedule.R
+import id.alif.footbalmatchschedule.database.Favorite
+import id.alif.footbalmatchschedule.database.FavoriteTeam
 import id.alif.footbalmatchschedule.database.database
 import id.alif.footbalmatchschedule.main.DetailLastMatch
 import org.jetbrains.anko.db.classParser
+import org.jetbrains.anko.db.select
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.intentFor
-import org.jetbrains.anko.db.select
 import org.jetbrains.anko.support.v4.onRefresh
+import id.alif.footbalmatchschedule.Adapter.FavoriteTeamAdapter
+import id.alif.footbalmatchschedule.main.DetailTeamActivity
 
-class FavoriteFragment: Fragment() {
-
-    private var favorites: MutableList<Favorite> = mutableListOf()
-    private lateinit var adapter: FavoriteMatchAdapter
+class FavTeamsFragment: Fragment() {
+    private var favoritesTeam: MutableList<FavoriteTeam> = mutableListOf()
+    private lateinit var adapter: FavoriteTeamAdapter
     private lateinit var swipeRefresh: SwipeRefreshLayout
     private lateinit var favList: RecyclerView
 
@@ -34,20 +36,18 @@ class FavoriteFragment: Fragment() {
             layoutManager = LinearLayoutManager(ctx)
         }
 
-        val listener: (Favorite) -> Unit = {
-            startActivity(intentFor<DetailLastMatch>(
-                "strEvent" to it.idEvent.toString(),
-                "idHomeTeam" to it.idHomeTeam.toString(),
-                "idAwayTeam" to it.idAwayTeam.toString()))
+        val listener: (FavoriteTeam) -> Unit = {
+            startActivity(intentFor<DetailTeamActivity>(
+                "id" to it.teamId.toString()))
         }
 
-        adapter = FavoriteMatchAdapter(favorites, listener)
+        adapter = FavoriteTeamAdapter(favoritesTeam,listener)
         favList.adapter = adapter
         swipeRefresh = view.findViewById<SwipeRefreshLayout>(R.id.swipe)
 
         showFavorite()
         swipeRefresh.onRefresh {
-            favorites.clear()
+            favoritesTeam.clear()
             showFavorite()
         }
 
@@ -57,13 +57,10 @@ class FavoriteFragment: Fragment() {
     private fun showFavorite(){
         context?.database?.use {
             swipeRefresh.isRefreshing = false
-            val result = select(Favorite.TABLE_FAVORITE)
-            val favorite = result.parseList(classParser<Favorite>())
-            favorites.addAll(favorite)
+            val result = select(FavoriteTeam.TABLE_FAVORITE_TEAM)
+            val favorite = result.parseList(classParser<FavoriteTeam>())
+            favoritesTeam.addAll(favorite)
             adapter.notifyDataSetChanged()
         }
     }
-
-
-
 }

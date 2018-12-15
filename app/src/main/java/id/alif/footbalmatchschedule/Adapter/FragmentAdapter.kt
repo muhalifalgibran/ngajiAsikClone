@@ -12,9 +12,8 @@ class FragmentAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
     override fun getPageTitle(position: Int): CharSequence? {
       return when (position) {
            0 -> "Last Matches"
-           1 -> "Next Matches"
           else -> {
-              return "Favorites"
+              return  "Next Matches"
           }
        }
     }
@@ -24,17 +23,14 @@ class FragmentAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
             0 -> {
                 LastMatchFragment()
             }
-            1 -> {
-                NextMatchFragment()
-            }
             else -> {
-                return FavoriteFragment()
+                return NextMatchFragment()
             }
         }
     }
 
     override fun getCount(): Int {
-       return 3
+       return 2
     }
 
 

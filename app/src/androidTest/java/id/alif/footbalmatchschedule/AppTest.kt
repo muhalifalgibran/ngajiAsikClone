@@ -2,6 +2,7 @@ package id.alif.footbalmatchschedule
 
 
 import android.support.test.espresso.Espresso
+import android.support.test.espresso.ViewAssertion
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.action.ViewActions.swipeLeft
 import android.support.test.espresso.assertion.ViewAssertions
@@ -33,21 +34,20 @@ class AppTest {
     @Test
     fun TestAppBehavior(){
 
-        Thread.sleep(5000);
+         Thread.sleep(5000);
         Espresso.onView(ViewMatchers.withId(R.id.recyclerLastMatchlist))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         Espresso.onView(ViewMatchers.withId(R.id.recyclerLastMatchlist))
             .perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(10))
         Espresso.onView(ViewMatchers.withId(R.id.recyclerLastMatchlist))
             .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(5, click()))
-        Thread.sleep(5000);
+        Thread.sleep(5000)
         Espresso.onView(ViewMatchers.withId(add_to_favorite))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         Espresso.onView(ViewMatchers.withId(add_to_favorite)).perform(click())
         Espresso.pressBack()
         Espresso.pressBack()
-        Espresso.onView(withId(R.id.viewpager_main)).perform(swipeLeft())
-
+        Espresso.onView(withId(R.id.recyclerLastMatchlist)).perform(swipeLeft())
         Thread.sleep(5000);
         Espresso.onView(ViewMatchers.withId(R.id.recyclerNextMatchlist))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
@@ -61,19 +61,6 @@ class AppTest {
         Espresso.onView(ViewMatchers.withId(add_to_favorite)).perform(click())
         Espresso.pressBack()
         Espresso.pressBack()
-        Espresso.onView(withId(R.id.viewpager_main)).perform(swipeLeft())
-
-        Thread.sleep(5000);
-        Espresso.onView(ViewMatchers.withId(R.id.recyclerFavMatchlist))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        Espresso.onView(ViewMatchers.withId(R.id.recyclerFavMatchlist))
-            .perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(1))
-        Espresso.onView(ViewMatchers.withId(R.id.recyclerFavMatchlist))
-            .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
-        Thread.sleep(5000);
-        Espresso.onView(ViewMatchers.withId(R.id.add_to_favorite))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        Espresso.onView(ViewMatchers.withId(add_to_favorite)).perform(click())
 
     }
 

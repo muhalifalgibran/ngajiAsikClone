@@ -37,7 +37,7 @@ class PlayerFragment: Fragment(), PlayerView {
     override fun playersList(data: List<PlayersModel>) {
         players.clear()
         players.addAll(data)
-        recyclerViewPlayer.adapter?.notifyDataSetChanged()
+        recyclerViewPlayer?.adapter?.notifyDataSetChanged()
     }
 
     private lateinit var presenter: PlayersPresenter
@@ -54,7 +54,7 @@ class PlayerFragment: Fragment(), PlayerView {
         recyclerViewPlayer.layoutManager = LinearLayoutManager(ctx)
         recyclerViewPlayer.adapter = PlayersAdapter(ctx, players)
         {
-            ctx.startActivity<DetailPlayerActivity>("id" to it.idPlayer)
+            ctx.startActivity<DetailPlayerActivity>("namaPemain" to it.strPlayer)
         }
 
         val request = ApiRepository()

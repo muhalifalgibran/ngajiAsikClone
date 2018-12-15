@@ -133,9 +133,6 @@ class LastMatchAdapter(private val lastMatch: List<LastMatchTeam>, private val l
         private val dates: TextView = view.find(R.id.eventDate)
         private val imgNot: ImageView = view.find(R.id.imageReminder)
 
-        //val time = getCurrentDateTime()
-
-
         fun bindItem(lastMatchTeam: LastMatchTeam, listener: (LastMatchTeam) -> Unit, stat: String?) {
             homeTeam.text = lastMatchTeam.strHomeTeam
             awayTeam.text = lastMatchTeam.strAwayTeam
@@ -145,14 +142,6 @@ class LastMatchAdapter(private val lastMatch: List<LastMatchTeam>, private val l
             val timeDate: String? = lastMatchTeam.dateEvent
 
             dates.text = lastMatchTeam.dateEvent + " | Jam: " + addTime(time)
-
-//            val originalFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-//            val originalFormatDate = SimpleDateFormat("yyyy-MM-dd")
-//            val date = originalFormat.parse(time).time
-//            val date1 = originalFormatDate.parse(timeDate).time
-//            val init = date1+date+ADD_12HOUR
-//
-
 
             if (stat == "last")
                 imgNot.visibility = View.INVISIBLE
@@ -198,16 +187,7 @@ class LastMatchAdapter(private val lastMatch: List<LastMatchTeam>, private val l
             }
 
             return ""
-//
-//            val formatter = SimpleDateFormat("HH:mm")
-//            formatter.timeZone = TimeZone.getTimeZone("UTC")
-//            val has = formatter.parse(time)
-//            val format: String? = SimpleDateFormat("HH:mm", Locale.getDefault()).format(has)
-//            if (format== null){
-//                return has.toString()
-//            }else{
-//                return format
-//            }
+
         }
 
     }
